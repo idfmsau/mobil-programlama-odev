@@ -1,34 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import * as eva from '@eva-design/eva';
-import { ApplicationProvider} from '@ui-kitten/components';
-import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import LoginScreen from './screens/LoginScreen'
-//import SignupScreen from './screens/SignupScreen';
-import MovieListScreen from './screens/MovieListScreen';
+import React, { useState } from "react";
+import * as eva from "@eva-design/eva";
+import { ApplicationProvider } from "@ui-kitten/components";
+import AuthenticatedNavigation from "./navigations/AuthenticatedNavigation";
+import NonAuthenticatedNavigation from "./navigations/NonAuthenticatedNavigation";
 import * as firebase from "firebase";
 import apiKey from "./config/keys";
+import { NavigationContainer } from "@react-navigation/native";
 
-const Stack = createStackNavigator();
 
-if (!firebase.apps.length) {
-  firebase.initializeApp(apiKey.firebaseConfig);
-} else {
-  firebase.app();
-}
+import { Provider } from "react-redux";
+import store from "./store/store";
 
 export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  if (!firebase.apps.length) {
+    firebase.initializeApp(apiKey.firebaseConfig);
+  } else {
+    firebase.app();
+  }
+
   return (
+    <Provider store={store}>
     <ApplicationProvider {...eva} theme={eva.light}>
-       <NavigationContainer>
-          <Stack.Navigator>
-          <Stack.Screen name="MovieListScreen" component={ MovieListScreen } />
-            {<Stack.Screen name="LoginScreen" component={ LoginScreen }/>
-           /* <Stack.Screen name="SignupScreen" component={ SignupScreen } /> */}
-          </Stack.Navigator>
-        </NavigationContainer>
+      <NavigationContainer>
+        {store.getState(isLoggedIn) ? (
+          <>
+            <AuthenticatedNavigation />
+          </>
+        ) : (
+          <NonAuthenticatedNavigation />
+        )}
+      </NavigationContainer>
     </ApplicationProvider>
+    </Provider>
   );
 }
