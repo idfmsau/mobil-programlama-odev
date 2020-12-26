@@ -10,7 +10,11 @@ const Stack = createStackNavigator();
 
 const NonAuthenticatedNavigation = ({ navigation }) => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={
+        {headerShown:false}
+      }
+    >
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
       <Stack.Screen name="SignupScreen" component={SignupScreen} />
     </Stack.Navigator>
