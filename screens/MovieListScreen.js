@@ -5,9 +5,13 @@ import { Layout, Select, SelectItem } from '@ui-kitten/components';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MovieCard from '../components/movieList/MovieCard';
 import { LoadingPage, ChangeGenreIndex } from '../store/actions/MovieListAction';
+import { schedulePushNotification} from '../utils/notificationService'
 
 const { width, height } = Dimensions.get("window");
 
+async function sendNotification() {
+    await schedulePushNotification('Sinedost\'a hoşgeldin!', 'Hoşgeldin!');
+}
 class MovieListScreen extends React.Component  {
     constructor(props){
         super(props)
@@ -19,12 +23,14 @@ class MovieListScreen extends React.Component  {
         }
     }
     
+
     setSelectedIndex = (index) => {
         this.props.ChangeGenreIndex(index,this.props.GenresList[index - 1].name, this.props.GenresList[index-1].id)
     }
 
     componentDidMount() {
-        this.props.LoadingPage()
+        this.props.LoadingPage();
+        sendNotification();
     }
     
 
