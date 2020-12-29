@@ -43,7 +43,7 @@ function SignupScreen({navigation}) {
         let result = await createUser(email, password);
         navigation.navigate("LoginScreen");
       }catch(err){
-        Alert.alert(err);
+        Alert.alert('Ops!', err);
       }
     }
     else{

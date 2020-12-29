@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
 import { Text } from "@ui-kitten/components";
-import {styles} from '../../styles/components/InfoBox.style';
+import styles from '../../styles/components/InfoBox.style';
 
 const { width, height } = Dimensions.get("window");
 
