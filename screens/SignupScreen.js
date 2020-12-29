@@ -57,7 +57,7 @@ function SignupScreen({navigation}) {
       <StatusBar barStyle="light-content" />
         <View style={styles.header}>
           <ImageBackground
-            source={require("../images/header.png")}
+            source={require('../assets/images/header.png')}
             style={styles.imageBackground}>
               <Text style={{
                 color:'white',

@@ -51,7 +51,7 @@ function LoginScreen({ navigation, loggedUser, loginUser }) {
       <StatusBar barStyle="light-content" />
       <View style={styles.header}>
         <ImageBackground
-          source={require("../images/header.png")}
+          source={require('../assets/images/header.png')}
           style={styles.imageBackground}
         >
           <Text
