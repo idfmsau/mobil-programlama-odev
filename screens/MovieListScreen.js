@@ -10,7 +10,7 @@ import { schedulePushNotification} from '../utils/notificationService'
 const { width, height } = Dimensions.get("window");
 
 async function sendNotification() {
-    await schedulePushNotification('Sinedost\'a hoşgeldin!', 'Hoşgeldin!');
+    await schedulePushNotification('Sinedost\'a hoşgeldin!', 'Vizyon ve trendlerin tadını çıkar!');
 }
 class MovieListScreen extends React.Component  {
     constructor(props){
