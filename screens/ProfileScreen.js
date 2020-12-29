@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styles from "../styles/ProfileScreen.style";
 import { SafeAreaView, View, ScrollView  } from "react-native";
-import { Avatar, Text } from "@ui-kitten/components";
+import { Avatar, Text, Button } from "@ui-kitten/components";
 import { LinearGradient } from "expo-linear-gradient";
 import InfoBox from "../components/profile/InfoBox";
 import { connect } from "react-redux";
@@ -26,12 +26,14 @@ function ProfileScreen({ loggedUser, navigation, favouriteMovieList,  GetFavouri
         <Text style={styles.userNameText} category="h6" status="basic">
           {loggedUser.user.user.email}
         </Text>
+        <Button style={styles.followButton} disabled>Takip Et (Çok Yakında)</Button>
       </LinearGradient>
         <InfoBox title="Listemde Neler Var?" value={favouriteMovieList.length}></InfoBox>
         <ScrollView>
         <View style={styles.mainView}>
           {favouriteMovieList.length>0 ? favouriteMovieList.map((item, index) => (
               <MovieCard
+                IsProfilePage={true}
                 key={index}
                 movieId={item.id}
                 name={item.original_title}
