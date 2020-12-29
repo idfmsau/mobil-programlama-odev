@@ -7,10 +7,10 @@ import {
   StatusBar,
   Alert
 } from "react-native";
+
 import styles from "../styles/LoginScreen.style";
 import { TextInput } from "react-native-gesture-handler";
 import { connect } from "react-redux";
-import * as firebase from "firebase";
 import { loginUser } from "../store/actions/authActions";
 import userSignIn from '../utils/loginUtils/userSignIn';
 import { TypingAnimation } from "react-native-typing-animation";
@@ -42,7 +42,7 @@ function LoginScreen({ navigation, loggedUser, loginUser }) {
     try{
       let result = await userSignIn(email, password, loginUser);
     }catch(err){
-      Alert.alert(err);
+      Alert.alert('Ops!', err);
     }
   }
 
@@ -51,7 +51,7 @@ function LoginScreen({ navigation, loggedUser, loginUser }) {
       <StatusBar barStyle="light-content" />
       <View style={styles.header}>
         <ImageBackground
-          source={require("../images/header.png")}
+          source={require('../assets/images/header.png')}
           style={styles.imageBackground}
         >
           <Text

@@ -6,7 +6,9 @@ import { GetMovieImageUrl } from '../../utils/apiUrls';
 
 const { width, height } = Dimensions.get("window");
 
-AddMovieFromList = (movieId) => {
+AddMovieFromList = (movieId, IsProfilePage) => {
+    if(IsProfilePage)
+        return;
     const { currentUser } = firebase.auth();
     let check=true
     let movieIds = [];
@@ -29,6 +31,8 @@ AddMovieFromList = (movieId) => {
     }).catch((ex)=>{console.log(ex)});
 }
 
+
+
 const MovieCard = (props) => {
     const [visible, setVisible] = React.useState(false);
     const [uri, setUri] = React.useState ('')
@@ -38,12 +42,12 @@ const MovieCard = (props) => {
     }; 
     getImgPath()
     },[])
-
+    console.log(props.IsHomePage);
     return (
         <>
             <View>
-                <TouchableOpacity
-                        onPress = {()=> AddMovieFromList(props.movieId)}
+                <TouchableOpacity 
+                        onPress = {()=> AddMovieFromList(props.movieId, props.IsProfilePage) }
                         onLongPress = {() => setVisible(true)}
                     >
                         <Image

@@ -43,7 +43,7 @@ function SignupScreen({navigation}) {
         let result = await createUser(email, password);
         navigation.navigate("LoginScreen");
       }catch(err){
-        Alert.alert(err);
+        Alert.alert('Ops!', err);
       }
     }
     else{
@@ -57,7 +57,7 @@ function SignupScreen({navigation}) {
       <StatusBar barStyle="light-content" />
         <View style={styles.header}>
           <ImageBackground
-            source={require("../images/header.png")}
+            source={require('../assets/images/header.png')}
             style={styles.imageBackground}>
               <Text style={{
                 color:'white',

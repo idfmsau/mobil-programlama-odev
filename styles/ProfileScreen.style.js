@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   },
   followButton: {
     flexDirection: "row",
-    marginTop: -30,
+    margin: width/10,
     backgroundColor: "#344768",
     minWidth: width / 2,
     zIndex: 1,
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderBottomWidth: 1,
     borderBottomColor: "#344768",
-    maxHeight: height / 10
+    minHeight: height / 10
     
   },
   contentBackground: {
