@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text,StyleSheet, TouchableOpacity, ImageBackground, StatusBar, Alert  } from "react-native";
-import createUser from "../components/createUser";
+import createUser from '../utils/loginUtils/createUser'
 import styles from "../styles/LoginScreen.style";
 import { TextInput } from "react-native-gesture-handler";
 import {TypingAnimation} from 'react-native-typing-animation'
@@ -34,13 +34,17 @@ function SignupScreen({navigation}) {
     )
   }
 
-  _comparePasswords = (email,password, confirmPassword,navigation) => {
+  _comparePasswords = async (email,password, confirmPassword,navigation) => {
     if(email === "" || password ==="" || confirmPassword ===""){
       Alert.alert("Lütfen Geçerli bir email ve şifre giriniz")
     }
     else if(password === confirmPassword){
-      createUser(email, password);     
-      navigation.navigate("LoginScreen");
+      try{
+        let result = await createUser(email, password);
+        navigation.navigate("LoginScreen");
+      }catch(err){
+        Alert.alert(err);
+      }
     }
     else{
       Alert.alert("Şifreler eşleşmiyor")

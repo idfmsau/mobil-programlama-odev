@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
 import { Text } from "@ui-kitten/components";
+import {styles} from '../../styles/components/InfoBox.style';
 
 const { width, height } = Dimensions.get("window");
 
@@ -19,20 +20,4 @@ const InfoBox = (props) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    alignSelf: "stretch",
-    alignItems: 'center',
-    justifyContent:'space-between',
-    padding: width/40,
-    marginBottom: 1,
-    backgroundColor: 'white',
-    maxHeight: height/10,
-  },
-  text: {
-  },
-  descriptionText: {
-  },
-});
 export default InfoBox;

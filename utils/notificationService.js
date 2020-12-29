@@ -1,6 +1,7 @@
 import * as Notifications from 'expo-notifications';
 import * as Permissions from 'expo-permissions';
 import Constants from 'expo-constants';
+
 Notifications.setNotificationHandler({
     handleNotification: async () => ({
       shouldShowAlert: true,
@@ -8,7 +9,6 @@ Notifications.setNotificationHandler({
       shouldSetBadge: false,
     }),
   });
-
 
 export async function registerForPushNotificationsAsync() {
     let token;
