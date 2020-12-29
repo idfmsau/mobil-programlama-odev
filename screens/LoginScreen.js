@@ -5,26 +5,15 @@ import {
   TouchableOpacity,
   ImageBackground,
   StatusBar,
+  Alert
 } from "react-native";
 import styles from "../styles/LoginScreen.style";
 import { TextInput } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 import * as firebase from "firebase";
 import { loginUser } from "../store/actions/authActions";
+import userSignIn from '../utils/loginUtils/userSignIn';
 import { TypingAnimation } from "react-native-typing-animation";
-
-function userSignIn(email, password, loginUser) {
-  return firebase
-    .auth()
-    .signInWithEmailAndPassword(email, password)
-    .then((user) => {
-      loginUser(user);
-    })
-    .catch((error) => {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-    });
-}
 
 function LoginScreen({ navigation, loggedUser, loginUser }) {
   const [email, setEmail] = useState("");
@@ -49,7 +38,13 @@ function LoginScreen({ navigation, loggedUser, loginUser }) {
     return <TypingAnimation dotColor="black" style={{ marginRight: 25 }} />;
   };
 
-  console.log(loggedUser);
+  _validateLogin = async (email, password, loginUser) => {
+    try{
+      let result = await userSignIn(email, password, loginUser);
+    }catch(err){
+      Alert.alert(err);
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -96,7 +91,7 @@ function LoginScreen({ navigation, loggedUser, loginUser }) {
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            userSignIn(email, password, loginUser);
+            _validateLogin(email, password, loginUser);
           }}
         >
           <View style={styles.buttonContainer}>
